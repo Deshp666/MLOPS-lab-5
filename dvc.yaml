@@ -1,0 +1,32 @@
+stages:
+  prepare_dataset:
+    cmd: python src/stages/prepare_dataset.py
+    deps:
+      - src/stages/prepare_dataset.py
+      - data/raw.csv
+    outs:
+      - data/prepared.csv
+
+  data_split:
+    cmd: python src/stages/data_split.py
+    deps:
+      - src/stages/data_split.py
+      - data/prepared.csv
+    outs:
+      - data/train.csv
+      - data/test.csv
+
+  train:
+    cmd: python src/stages/train.py
+    deps:
+      - src/stages/train.py
+      - data/train.csv
+    outs:
+      - models/model.pkl
+
+  test_model:
+    cmd: python src/stages/test_model.py
+    deps:
+      - src/stages/test_model.py
+      - data/test.csv
+      - models/model.pkl
