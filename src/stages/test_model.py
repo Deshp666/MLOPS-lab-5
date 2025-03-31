@@ -3,7 +3,7 @@ import yaml
 import joblib
 import numpy as np
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-from src.utils.logger import setup_logger
+from logger import setup_logger
 
 logger = setup_logger(__name__)
 

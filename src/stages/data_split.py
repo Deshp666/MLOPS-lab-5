@@ -1,7 +1,7 @@
 import pandas as pd
 import yaml
 from sklearn.model_selection import train_test_split
-from src.utils.logger import setup_logger
+from logger import setup_logger
 
 logger = setup_logger(__name__)
 

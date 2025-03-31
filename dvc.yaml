@@ -3,7 +3,7 @@ stages:
     cmd: python src/stages/prepare_dataset.py
     deps:
       - src/stages/prepare_dataset.py
-      - data/raw.csv
+      - data/cars.csv
     outs:
       - data/prepared.csv
 

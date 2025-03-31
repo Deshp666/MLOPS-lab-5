@@ -1,7 +1,7 @@
 import pandas as pd
 import yaml
 from sklearn.preprocessing import OrdinalEncoder
-from src.utils.logger import setup_logger
+from logger import setup_logger
 
 logger = setup_logger(__name__)
 
@@ -42,7 +42,7 @@ def prepare_dataset(config_path="config.yaml"):
     df[cat_columns] = encoder.fit_transform(df[cat_columns])
 
     #Создание новых признаков
-    df['distance_by_year'] = df['km_driven']/(2020-df['year'])
+    df['distance_by_year'] = round(df['km_driven']/(2021-df['year']))
     df['age'] = 2025 - df['year']
 
     df.to_csv(prepared_path, index=False)

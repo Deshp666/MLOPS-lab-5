@@ -2,11 +2,12 @@ import pandas as pd
 import yaml
 import mlflow
 import joblib
+import os
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import StandardScaler, PowerTransformer
 from sklearn.model_selection import GridSearchCV, train_test_split
 from mlflow.models import infer_signature
-from src.utils.logger import setup_logger
+from logger import setup_logger
 
 logger = setup_logger(__name__)
 
@@ -40,6 +41,7 @@ def train_model(config_path="config.yaml"):
         clf = GridSearchCV(rf, params, cv=3, n_jobs=-1)
         clf.fit(X_train, y_train.reshape(-1))
 
+        os.makedirs(os.path.dirname(model_path), exist_ok=True)
         best = clf.best_estimator_
         joblib.dump(best, model_path)
 
